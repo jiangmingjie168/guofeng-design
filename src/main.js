@@ -142,6 +142,26 @@ const editor = new Editor(canvasEl, {
 // 默认缩放适应视口
 fitZoom();
 
+
+function syncPresetSelect(w, h) {
+  const sel = document.getElementById('preset-size');
+  const match = CANVAS_PRESETS.find((p) => p.width === w && p.height === h);
+  if (match) {
+    sel.value = match.id;
+    return;
+  }
+  // Fallback: temporary option reflecting custom size
+  let opt = sel.querySelector('option[data-custom="1"]');
+  if (!opt) {
+    opt = document.createElement('option');
+    opt.dataset.custom = '1';
+    sel.appendChild(opt);
+  }
+  opt.value = `custom-${w}x${h}`;
+  opt.textContent = `自定义 ${w}×${h}`;
+  sel.value = opt.value;
+}
+
 function toast(msg) {
   const el = document.getElementById('toast');
   el.textContent = msg;
@@ -293,8 +313,7 @@ TEMPLATES.forEach((t) => {
     </div>`;
   btn.addEventListener('click', async () => {
     await editor.loadTemplate(t);
-    document.getElementById('preset-size').value =
-      CANVAS_PRESETS.find((p) => p.width === t.width && p.height === t.height)?.id || 'square';
+    syncPresetSelect(t.width, t.height);
     fitZoom();
     toast(`已加载模板「${t.name}」`);
     closeDrawers();

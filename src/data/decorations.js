@@ -115,6 +115,20 @@ export const DECORATIONS = [
       { d: 'M25,28 Q35,22 40,30 Q35,38 25,32 Z', fill: '#C23A2B' },
     ],
   },
+
+  {
+    id: 'fudoufang',
+    name: '福字斗方',
+    viewBox: '0 0 120 120',
+    paths: [
+      { d: 'M60,8 L112,60 L60,112 L8,60 Z', fill: '#C23A2B' },
+      { d: 'M60,18 L102,60 L60,102 L18,60 Z', fill: 'none', stroke: '#F0C239', strokeWidth: 3 },
+      { d: 'M60,28 L92,60 L60,92 L28,60 Z', fill: 'none', stroke: '#F5E6C8', strokeWidth: 1.5 },
+    ],
+    texts: [
+      { text: '福', x: 60, y: 68, fontSize: 48, fill: '#F5E6C8', fontFamily: "KaiTi, STKaiti, SimSun, serif", fontWeight: '700' },
+    ],
+  },
   {
     id: 'biankuang',
     name: '云纹边框',
@@ -128,7 +142,7 @@ export const DECORATIONS = [
 ];
 
 export function decorationToSvgString(dec, size = 120) {
-  const parts = dec.paths.map((p) => {
+  const parts = (dec.paths || []).map((p) => {
     const attrs = [];
     if (p.fill && p.fill !== 'none') attrs.push(`fill="${p.fill}"`);
     else if (p.fill === 'none') attrs.push('fill="none"');
@@ -138,5 +152,9 @@ export function decorationToSvgString(dec, size = 120) {
     if (p.opacity != null) attrs.push(`opacity="${p.opacity}"`);
     return `<path d="${p.d}" ${attrs.join(' ')} />`;
   }).join('');
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${dec.viewBox}" width="${size}" height="${size}">${parts}</svg>`;
+  const texts = (dec.texts || []).map((tx) => {
+    const ff = (tx.fontFamily || "KaiTi, STKaiti, SimSun, serif").replace(/"/g, "'");
+    return `<text x="${tx.x}" y="${tx.y}" text-anchor="middle" dominant-baseline="middle" font-size="${tx.fontSize || 40}" fill="${tx.fill || '#F5E6C8'}" font-family="${ff}" font-weight="${tx.fontWeight || '700'}">${tx.text}</text>`;
+  }).join('');
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${dec.viewBox}" width="${size}" height="${size}">${parts}${texts}</svg>`;
 }

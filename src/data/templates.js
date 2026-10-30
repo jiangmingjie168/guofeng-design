@@ -3,6 +3,7 @@
  */
 export const CANVAS_PRESETS = [
   { id: 'poster', name: '海报 1080×1920', width: 1080, height: 1920 },
+  { id: 'story', name: '竖版卡片 1080×1350', width: 1080, height: 1350 },
   { id: 'square', name: '方图 1080×1080', width: 1080, height: 1080 },
   { id: 'card', name: '名片 1050×600', width: 1050, height: 600 },
 ];
@@ -21,9 +22,9 @@ export const TEMPLATES = [
       { type: 'text', text: '万事如意 · 阖家安康', left: 540, top: 880, fontSize: 42, fill: '#FFC773', fontFamily: 'KaiTi, STKaiti, SimSun, serif', originX: 'center', originY: 'center' },
       { type: 'decoration', decorationId: 'denglong', left: 180, top: 280, scale: 1.8 },
       { type: 'decoration', decorationId: 'denglong', left: 780, top: 280, scale: 1.8 },
-      { type: 'decoration', decorationId: 'chuanghua', left: 440, top: 1400, scale: 1.5 },
       { type: 'decoration', decorationId: 'xiangyun', left: 300, top: 1100, scale: 1.6 },
-      { type: 'text', text: '甲辰年', left: 540, top: 1700, fontSize: 36, fill: '#F5E6C8', fontFamily: 'KaiTi, STKaiti, SimSun, serif', originX: 'center' },
+      { type: 'decoration', decorationId: 'fudoufang', left: 390, top: 1320, scale: 2.2 },
+      { type: 'text', text: '丁未年', left: 540, top: 1700, fontSize: 36, fill: '#F5E6C8', fontFamily: 'KaiTi, STKaiti, SimSun, serif', originX: 'center' },
     ],
   },
   {
@@ -51,7 +52,7 @@ export const TEMPLATES = [
     height: 1080,
     background: '#D6ECF0',
     objects: [
-      { type: 'decoration', decorationId: 'shanshui', left: 40, top: 620, scale: 5 },
+      { type: 'decoration', decorationId: 'shanshui', left: 40, top: 700, scale: 4.8 },
       { type: 'circle', left: 780, top: 120, radius: 70, fill: '#FFFBF0', opacity: 0.9 },
       { type: 'text', text: '山水一程', left: 540, top: 380, fontSize: 88, fill: '#2C3E50', fontFamily: 'KaiTi, STKaiti, SimSun, serif', originX: 'center', fontWeight: 'bold' },
       { type: 'text', text: '共赏清风明月', left: 540, top: 500, fontSize: 36, fill: '#425066', fontFamily: 'KaiTi, STKaiti, SimSun, serif', originX: 'center' },
@@ -122,7 +123,6 @@ export const TEMPLATES = [
       { type: 'rect', left: 60, top: 720, width: 960, height: 180, fill: '#F3E9D7', rx: 12, ry: 12 },
       { type: 'text', text: '③  如实告知很重要', left: 100, top: 780, fontSize: 36, fill: '#2C1810', fontFamily: 'KaiTi, STKaiti, SimSun, serif', originY: 'center', fontWeight: 'bold' },
       { type: 'text', text: '健康与职业信息如实填写，理赔更顺利', left: 100, top: 840, fontSize: 26, fill: '#5C4033', fontFamily: 'PingFang SC, Microsoft YaHei, sans-serif', originY: 'center' },
-      { type: 'decoration', decorationId: 'biankuang', left: 40, top: 250, scale: 5 },
       { type: 'rect', left: 60, top: 960, width: 960, height: 280, fill: '#C23A2B', rx: 12, ry: 12 },
       { type: 'text', text: '您的名字  ·  保险顾问', left: 540, top: 1040, fontSize: 40, fill: '#F5E6C8', fontFamily: 'KaiTi, STKaiti, SimSun, serif', originX: 'center', originY: 'center', fontWeight: 'bold' },
       { type: 'text', text: '联系电话  请填写手机号', left: 540, top: 1120, fontSize: 28, fill: '#FFC773', fontFamily: 'PingFang SC, Microsoft YaHei, sans-serif', originX: 'center', originY: 'center' },
