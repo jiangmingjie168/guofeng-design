@@ -1,0 +1,13 @@
+import { chromium } from 'playwright';
+const browser = await chromium.launch({ headless: true });
+const page = await browser.newPage();
+page.on('console', (m) => console.log('CONSOLE', m.type(), m.text()));
+page.on('pageerror', (e) => console.log('PAGEERROR', e.message));
+page.on('requestfailed', (r) => console.log('FAIL', r.url(), r.failure()?.errorText));
+const res = await page.goto('http://127.0.0.1:4173/guofeng-design/', { waitUntil: 'networkidle', timeout: 30000 });
+console.log('status', res?.status());
+console.log('title', await page.title());
+console.log('html snippet', (await page.content()).slice(0, 500));
+await page.waitForTimeout(2000);
+console.log('has mohua', await page.evaluate(() => typeof window.__mohua));
+await browser.close();
